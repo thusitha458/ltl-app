@@ -1,10 +1,228 @@
 .App {
   text-align: center;
+  /*background-color: #5031ad;*/
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.App.home-image {
+  background-image: url("/home.jpg");
+  background-repeat: repeat-y;
+  background-size: cover;
+}
+
+.App.machine-image {
+  background-image: url("/machine.JPG");
+  background-repeat: repeat-y;
+  background-size: cover;
+}
+
+.App.logo-image {
+  background-image: url("/logo.jpg");
+  background-repeat: repeat-y;
+  background-size: cover;
 }
 
 .content {
-  margin-top: 100px;
+  margin-top: 25px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  opacity: 0.95;
+}
+
+.ProjectsWrapper {
+  padding-bottom: 100px;
+}
+
+.Projects {
+  width: 100%;
+  max-width: 400px;
+  background-color: #ffffff;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+}
+
+.Projects .ProjectItem {
+  position: relative;
+  max-width: 400px;
+  min-height: 73px;
+}
+
+.ProjectItem .details.item-even {
+  background-color: #dbdbdb;
+}
+
+.ProjectItem .delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  background-color: #e6e6e6;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.ProjectItem .delete-button.item-even {
+  background-color: #ffffff;
+}
+
+.Projects .addProjectWrapper {
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+}
+
+.ProjectActionPlan {
+  min-width: 800px;
+  max-width: 1100px;
+  margin: 25px auto 0 auto;
+  padding-bottom: 100px;
+}
+
+.ProjectActionPlan .table {
+  width: 100%;
+}
+
+.ProjectActionPlan .textField {
+
+}
+
+.ProjectActionPlan .MuiInputBase-input {
+  font-size: 10px;
+}
+
+.ProjectActionPlan .MuiSelect-root {
+  font-size: 10px;
+}
+
+.ProjectActionPlan .MuiFormControl-root {
+  width: 100%;
+}
+
+.MuiMenuItem-root {
+  font-size: 12px !important;
+}
+
+.ProjectActionPlan .footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  opacity: 0.9;
+  /*background-color: black;*/
+  background-color: #f5f5f5;
+  box-shadow: 0 -2px 2px gray;
+}
+
+.ProjectActionPlan .footer .saveButton {
+  height: 40px;
+  margin-top: 5px;
+  margin-right: 10px;
+  /*opacity: 1;*/
+  float: right;
+}
+
+.LoginWrapper {
+  width: 100%;
+  height: 100%;
+  padding-top: 100px;
+}
+
+.Login {
+  /*margin-top: 100px;*/
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 400px;
+  height: 340px;
+  border: 1px solid #c5c5c5;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  opacity: 0.95;
+}
+
+.Login .LoginContent {
+  width: 90%;
+  margin: 20px 5%;
+  height: 300px;
+}
+
+.Login .formControl {
+  margin-left: 10px;
+  margin-right: 10%;
+  width: 80%;
+}
+
+.Login .formField {
+  margin-top: 10px;
+}
+
+.Login .loginButton {
+  margin-top: 20px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 40px;
+}
+
+.Login .loginSpinner {
+  text-align: center;
+}
+
+.Login .description {
+  height: 50px;
+  /*margin-top: 80px;*/
+  padding-top: 40px;
+}
+
+.AddProject {
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 400px;
+  /*height: 400px;*/
+  border: 1px solid #fafafa;
+  /*border: 1px solid #c5c5c5;*/
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+
+.AddProject .AddProjectContent {
+  width: 90%;
+  margin: 50px 5%;
+  /*height: 300px;*/
+}
+
+.AddProject .formControl {
+  margin-left: 10px;
+  margin-right: 10%;
+  width: 80%;
+}
+
+.AddProject .formField {
+  margin-top: 10px;
+}
+
+.AddProject .addProjectButton {
+  margin-top: 20px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.AddProject .description {
+  height: 30px;
+  margin-top: 20px;
+}
+
+.hide-element {
+  display: none;
 }

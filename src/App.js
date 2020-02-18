@@ -1,44 +1,38 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Button from '@material-ui/core/Button';
-import ListExample from './ListExample';
-import MenuAppBar from './MenuAppBar';
-import TableExample from "./TableExample";
-import Login from './Login';
+import Projects from './components/Projects';
+import Login from './components/Login';
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import ProjectActionPlan from "./components/ProjectActionPlan";
+import AddProject from "./components/AddProject";
+import {NotificationContainer} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
+import {BACKGROUND_IMAGES} from "./config";
 
 class App extends Component {
-  state = {
-    clicked: false,
-  };
+    state = {
+        backgroundImage: BACKGROUND_IMAGES.LOGO,
+    };
 
-  handleOnClick = () => {
-    this.setState({
-      clicked: true,
-    });
-  };
+    handleRouteChange = imageId => {
+        this.setState({backgroundImage: imageId});
+    };
 
   render() {
-    return (
-      <div className="App">
-        <MenuAppBar />
-        <div className="content">
-          {this.state.clicked ? <TableExample /> : <ListExample onClickItem={this.handleOnClick} />}
-          <Login />
-        </div>
-      </div>
-    );
+      return (
+          <Router>
+              <div className={`App ${this.state.backgroundImage}`}>
+                  <NotificationContainer/>
+                  <Switch>
+                      <Route exact path="/login" render={props => <Login onRouteChange={() => this.handleRouteChange(BACKGROUND_IMAGES.HOME)} {...props} />} />
+                      <Route exact path="/" render={props => <Projects onRouteChange={() => this.handleRouteChange(BACKGROUND_IMAGES.HOME)} {...props}/>} />
+                      <Route exact path="/project/:ct" render={props => <ProjectActionPlan onRouteChange={() => this.handleRouteChange(BACKGROUND_IMAGES.MACHINE)} {...props}/>} />
+                      <Route exact path="/addProject" render={props => <AddProject onRouteChange={() => this.handleRouteChange(BACKGROUND_IMAGES.HOME)} {...props}/>} />
+                  </Switch>
+              </div>
+          </Router>
+      );
   }
 }
-
-// function App() {
-
-//   return (
-//     <div className="App">
-//       <MenuAppBar />
-//       <ListExample />
-//     </div>
-//   );
-// }
 
 export default App;
