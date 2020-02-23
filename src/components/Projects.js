@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import List from '@material-ui/core/List';
 import axios from 'axios';
-import {BACKEND_URL} from "../config";
+import {BACKEND_URL} from "../config/config";
 import ProjectItem from "./ProjectItem";
 import withLayout from "./HOCs/withLayout";
 import Fab from '@material-ui/core/Fab';

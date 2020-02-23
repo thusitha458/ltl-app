@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
-import {BACKEND_URL} from '../config';
+import {BACKEND_URL} from '../config/config';
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {NotificationManager} from "react-notifications";

@@ -6,7 +6,7 @@ import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {NotificationManager} from "react-notifications";
-import {BACKEND_URL} from "../config";
+import {BACKEND_URL} from "../config/config";
 import axios from 'axios';
 import {CircularProgress} from "@material-ui/core";
 import Cookies from 'js-cookie';

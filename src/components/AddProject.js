@@ -3,7 +3,7 @@ import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import axios from 'axios';
-import {BACKEND_URL} from "../config";
+import {BACKEND_URL} from "../config/config";
 import {NotificationManager} from 'react-notifications';
 import Cookies from 'js-cookie';
 import Layout from "./Layout";

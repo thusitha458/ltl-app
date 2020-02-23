@@ -12,7 +12,7 @@
 }
 
 .App.machine-image {
-  background-image: url("/machine.JPG");
+  background-image: url("/machine.jpg");
   background-repeat: repeat-y;
   background-size: cover;
 }

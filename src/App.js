@@ -7,7 +7,7 @@ import ProjectActionPlan from "./components/ProjectActionPlan";
 import AddProject from "./components/AddProject";
 import {NotificationContainer} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
-import {BACKGROUND_IMAGES} from "./config";
+import {BACKGROUND_IMAGES} from "./config/config";
 
 class App extends Component {
     state = {
