@@ -69,6 +69,7 @@ class Login extends Component {
                         >
                             <MenuItem value={"none"} disabled>Role</MenuItem>
                             <MenuItem value={"ADMIN"}>ADMIN</MenuItem>
+                            <MenuItem value={"SPE"}>SPE</MenuItem>
                             <MenuItem value={"EE"}>EE</MenuItem>
                             <MenuItem value={"AM C&P"}>AM C&P</MenuItem>
                             <MenuItem value={"QA"}>QA</MenuItem>

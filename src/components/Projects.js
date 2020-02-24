@@ -115,14 +115,14 @@ class Projects extends Component {
                                                         onClickItem={() => this.handleProjectClick(project.ct)}
                                                         ct={project.ct}
                                                         customerName={project.customer && project.customer.name}
-                                                        showDelete={role === 'ADMIN'}
+                                                        showDelete={role === 'ADMIN' || role === 'SPE'}
                                                         onClickDelete={() => this.handleDeleteClick(project.ct)}
                                                         even={index % 2 !== 0}
                                                     />
                                                 )
                                             }
                                         </List>
-                                        <div className={`addProjectWrapper ${(!role || role !== 'ADMIN') && "hide-element"}`}>
+                                        <div className={`addProjectWrapper ${(!role || (role !== 'ADMIN' && role !== 'SPE')) && "hide-element"}`}>
                                             <Fab color="default" aria-label="add" onClick={this.handleAddProjectClick}>
                                                 <AddIcon />
                                             </Fab>
