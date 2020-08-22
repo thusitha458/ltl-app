@@ -38,7 +38,7 @@ const SetUserPasswordDialog = ({ open, onClose, history }) => {
     const handleUpdatePassword = () => {
         if (!password || !role) {
             setFormError('Please complete the form');
-        } else if (!password.match(/^(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/)) {
+        } else if (!/^(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/.test(password)) {
             setFormError('Password should contain minimum six characters consisting of letters, numbers and special characters (@, $, !, %, *, #, ?, &). There should be at least one special character');
         } else {
             const token = Cookies.get('token');

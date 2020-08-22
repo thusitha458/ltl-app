@@ -43,7 +43,7 @@ const UpdatePasswordDialog = ({ open, onClose, history }) => {
     const handleUpdatePassword = () => {
         if (!oldPassword || !newPassword || !newConfirmPassword) {
             setFormError('Please complete the form');
-        } else if (!newPassword.match(/^(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/)) {
+        } else if (!/^(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/.test(newPassword)) {
             setFormError('Password should contain minimum six characters consisting of letters, numbers and special characters (@, $, !, %, *, #, ?, &). There should be at least one special character');
         } else if (newPassword !== newConfirmPassword) {
             setFormError('New passwords do not match');

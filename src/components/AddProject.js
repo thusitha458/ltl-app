@@ -63,7 +63,7 @@ class AddProject extends Component {
     };
 
     handleOnChangeCT = e => {
-        if (/^[a-zA-Z0-9 _()]*$/.test(e.target.value)) {
+        if (/^[a-zA-Z0-9_()]*$/.test(e.target.value)) {
             this.setState({ct: e.target.value});
         }
     };
