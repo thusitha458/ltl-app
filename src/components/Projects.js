@@ -3,7 +3,6 @@ import List from '@material-ui/core/List';
 import axios from 'axios';
 import {BACKEND_URL} from "../config/config";
 import ProjectItem from "./ProjectItem";
-import withLayout from "./HOCs/withLayout";
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import {CircularProgress} from "@material-ui/core";
@@ -57,6 +56,10 @@ class Projects extends Component {
 
     handleAddProjectClick = () => {
         this.props.history.push('/addProject');
+    };
+
+    handleProjectEdit = ct => {
+        this.props.history.push(`/edit/${ct}`);
     };
 
     handleDeleteClick = ct => {
@@ -116,7 +119,9 @@ class Projects extends Component {
                                                         ct={project.ct}
                                                         customerName={project.customer && project.customer.name}
                                                         showDelete={role === 'ADMIN' || role === 'SPE'}
+                                                        showEdit={role === 'ADMIN' || role === 'SPE'}
                                                         onClickDelete={() => this.handleDeleteClick(project.ct)}
+                                                        onClickEdit={() => this.handleProjectEdit(project.ct)}
                                                         even={index % 2 !== 0}
                                                     />
                                                 )

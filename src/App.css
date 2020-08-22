@@ -38,25 +38,33 @@
 .Projects {
   width: 100%;
   max-width: 400px;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   margin-left: auto;
   margin-right: auto;
   border-radius: 5px;
+}
+
+.Projects .MuiList-padding {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .Projects .ProjectItem {
   position: relative;
   max-width: 400px;
   min-height: 73px;
-}
-
-.ProjectItem .details.item-even {
-  background-color: #dbdbdb;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: #ffffff;
 }
 
 .ProjectItem .delete-button {
   position: absolute;
-  top: 5px;
+  bottom: 10px;
   right: 5px;
   width: 20px;
   height: 20px;
@@ -65,8 +73,24 @@
   cursor: pointer;
 }
 
-.ProjectItem .delete-button.item-even {
-  background-color: #ffffff;
+.ProjectItem .delete-button:hover {
+  opacity: 0.7;
+}
+
+.ProjectItem .edit-button {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  background-color: #e6e6e6;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.ProjectItem .edit-button:hover {
+  opacity: 0.7;
 }
 
 .Projects .addProjectWrapper {
@@ -145,6 +169,7 @@
   background-color: #ffffff;
   border-radius: 10px;
   opacity: 0.95;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .Login .LoginContent {
@@ -192,6 +217,7 @@
   text-align: center;
   background-color: #ffffff;
   border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 

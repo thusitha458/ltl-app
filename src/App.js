@@ -8,6 +8,7 @@ import AddProject from "./components/AddProject";
 import {NotificationContainer} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import {BACKGROUND_IMAGES} from "./config/config";
+import EditProject from './components/EditProject';
 
 class App extends Component {
     state = {
@@ -28,6 +29,7 @@ class App extends Component {
                       <Route exact path="/" render={props => <Projects onRouteChange={() => this.handleRouteChange(BACKGROUND_IMAGES.HOME)} {...props}/>} />
                       <Route exact path="/project/:ct" render={props => <ProjectActionPlan onRouteChange={() => this.handleRouteChange(BACKGROUND_IMAGES.MACHINE)} {...props}/>} />
                       <Route exact path="/addProject" render={props => <AddProject onRouteChange={() => this.handleRouteChange(BACKGROUND_IMAGES.HOME)} {...props}/>} />
+                      <Route exact path="/edit/:ct" render={props => <EditProject onRouteChange={() => this.handleRouteChange(BACKGROUND_IMAGES.HOME)} {...props}/>} />
                   </Switch>
               </div>
           </Router>

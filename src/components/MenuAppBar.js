@@ -9,6 +9,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Cookies from 'js-cookie';
+import UpdatePasswordDialog from './UpdatePasswordDialog';
+import SetUserPasswordDialog from './SetUserPasswordDialog';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -20,10 +22,20 @@ const useStyles = makeStyles(theme => ({
     title: {
         flexGrow: 1,
     },
+    accountOptions: {
+        marginLeft: 'auto',
+    },
+    titleWrapper: {
+        width: '100%',
+    },
 }));
 
 export default function MenuAppBar (props) {
     const classes = useStyles();
+
+    const [updatePasswordOpen, setUpdatePasswordOpen] = React.useState(false);
+    const [overwritePasswordOpen, setOverwritePasswordOpen] = React.useState(false);
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
@@ -41,6 +53,28 @@ export default function MenuAppBar (props) {
         props.history.push('/login');
     };
 
+    const handleUpdatePasswordClick = () => {
+        if (!updatePasswordOpen) {
+            setUpdatePasswordOpen(true);
+        }
+        setAnchorEl(null);
+    };
+
+    const handleUpdatePasswordClose = () => {
+        setUpdatePasswordOpen(false);
+    }
+
+    const handleOverwritePasswordClick = () => {
+        if (!updatePasswordOpen) {
+            setOverwritePasswordOpen(true);
+        }
+        setAnchorEl(null);
+    };
+
+    const handleOverwritePasswordClose = () => {
+        setOverwritePasswordOpen(false);
+    }
+
     const handleHomeClick = () => {
         props.history.push('/');
     };
@@ -49,16 +83,30 @@ export default function MenuAppBar (props) {
         <div className={classes.root} style={{opacity: 0.95}}>
             <AppBar position="static" color="default">
                 <Toolbar>
+                    <div>
                     {
                         !props.isHome &&
                         <IconButton onClick={handleHomeClick} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                             <HomeIcon />
                         </IconButton>
                     }
-                    <Typography variant="h6" className={classes.title}>
-                        {props.title || 'LTL (Pvt) Limited'}
-                    </Typography>
-                    <div>
+                    </div>
+                    <div className={classes.titleWrapper}>
+                        <div>
+                            <Typography variant="h5" className={classes.title}>
+                                {props.title || 'LTL (Pvt) Limited'}
+                            </Typography>
+                        </div>
+                        <div>
+                        {
+                            props.items && props.items.length > 0 && 
+                            <Typography variant="h10" className={classes.title}>
+                                {props.items.join(', ')}
+                            </Typography>
+                        }
+                        </div>
+                    </div>
+                    <div className={classes.accountOptions}>
                         <IconButton
                             aria-label="account of current user"
                             aria-controls="menu-appbar"
@@ -83,11 +131,23 @@ export default function MenuAppBar (props) {
                             open={open}
                             onClose={handleClose}
                         >
-                            <MenuItem onClick={handleSignOutClick}>Sign out</MenuItem>
+                            <MenuItem onClick={handleUpdatePasswordClick}>Update My Password</MenuItem>
+                            {Cookies.get('role') === 'ADMIN' && <MenuItem onClick={handleOverwritePasswordClick}>Set User Password</MenuItem>}
+                            <MenuItem onClick={handleSignOutClick}>Sign Out</MenuItem>
                         </Menu>
                     </div>
                 </Toolbar>
             </AppBar>
+            <UpdatePasswordDialog 
+                open={updatePasswordOpen}
+                onClose={handleUpdatePasswordClose}
+                history={props.history}
+            />
+            <SetUserPasswordDialog 
+                open={overwritePasswordOpen}
+                onClose={handleOverwritePasswordClose}
+                history={props.history}
+            />
         </div>
     );
 }

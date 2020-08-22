@@ -122,7 +122,11 @@ class ProjectActionPlan extends Component {
         let role = Cookies.get('role');
 
         return (
-            <Layout {...this.props} title={this.state.project && `${this.state.project.ct}: ${this.state.project.customer.name}`}>
+            <Layout 
+                {...this.props} 
+                title={this.state.project && `${this.state.project.ct}: ${this.state.project.customer.name}`}
+                items={this.state.project && this.state.project.items}
+            >
                 <div className="ProjectActionPlan">
                 {
                     this.state.loading ?
