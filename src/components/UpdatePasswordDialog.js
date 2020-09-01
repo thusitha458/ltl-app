@@ -63,7 +63,8 @@ const UpdatePasswordDialog = ({ open, onClose, history }) => {
                     ).then(() => {
                         NotificationManager.success('Password updated successfully!');
                     }).catch(error => {
-                        NotificationManager.error('Request failed');
+                        const errorMessage = error.response && error.response.data && error.response.data.error;
+                        NotificationManager.error(errorMessage || 'Request failed');
                         if (error.response && error.response.status === 401) {
                             history.push('/login');
                         }

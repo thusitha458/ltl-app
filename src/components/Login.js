@@ -40,7 +40,8 @@ class Login extends Component {
                     }
                 })
                 .catch(error => {
-                    NotificationManager.error('Request failed');
+                    const errorMessage = error.response && error.response.data && error.response.data.error;
+                    NotificationManager.error(errorMessage || 'Request failed');
                     this.setState({role: '', password: ''});
                 })
                 .finally(() => {

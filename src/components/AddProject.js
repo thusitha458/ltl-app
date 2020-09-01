@@ -48,7 +48,8 @@ class AddProject extends Component {
                             this.props.history.push(`/project/${this.state.ct.trim()}`);
                         }
                     }).catch(error => {
-                        NotificationManager.error('Request failed');
+                        const errorMessage = error.response && error.response.data && error.response.data.error;
+                        NotificationManager.error(errorMessage || 'Request failed');
                         this.setState({loading: false, ct: '', customerName: ''});
                         if (error.response && error.response.status === 401) {
                             this.props.history.push('/login');

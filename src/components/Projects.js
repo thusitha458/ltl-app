@@ -35,7 +35,8 @@ class Projects extends Component {
                 }
                 if (this._isMounted) this.setState({loading: false});
             }).catch(error => {
-                NotificationManager.error('Request failed');
+                const errorMessage = error.response && error.response.data && error.response.data.error;
+                NotificationManager.error(errorMessage || 'Request failed');
                 this.setState({loading: false});
                 if (error.response && error.response.status === 401) {
                     this.props.history.push('/login');
@@ -82,7 +83,8 @@ class Projects extends Component {
                 }
                 if (this._isMounted) this.setState({loading: false});
             }).catch(error => {
-                NotificationManager.error('Request failed');
+                const errorMessage = error.response && error.response.data && error.response.data.error;
+                NotificationManager.error(errorMessage || 'Request failed');
                 this.setState({loading: false});
                 if (error.response && error.response.status === 401) {
                     this.props.history.push('/login');

@@ -20,6 +20,7 @@ class EditProject extends Component {
         itemDescription: '',
         items: [],
         loading: false,
+        ct: '',
     };
 
     componentDidMount() {
@@ -36,11 +37,13 @@ class EditProject extends Component {
                         project: response.data.project,
                         customerName: response.data.project.customer && response.data.project.customer.name,
                         items: response.data.project.items || [],
+                        ct: response.data.project.ct,
                     });
                 }
                 if (this._isMounted) this.setState({loading: false});
             }).catch(error => {
-                NotificationManager.error('Request failed');
+                const errorMessage = error.response && error.response.data && error.response.data.error;
+                NotificationManager.error(errorMessage || 'Request failed');
                 this.setState({loading: false});
                 if (error.response && error.response.status === 401) {
                     this.props.history.push('/login');
@@ -55,9 +58,15 @@ class EditProject extends Component {
         this._isMounted = false;
     }
 
+    handleOnChangeCT = e => {
+        if (/^[a-zA-Z0-9_()]*$/.test(e.target.value)) {
+            this.setState({ct: e.target.value});
+        }
+    };
+
     handleEditProjectClick = () => {
         let ct = this.props.match && this.props.match.params && this.props.match.params.ct;
-        if (ct && this.state.customerName) {
+        if (ct && this.state.ct && this.state.customerName) {
             let token = Cookies.get('token');
             if (token) {
                 this.setState({loading: true});
@@ -65,17 +74,22 @@ class EditProject extends Component {
                     {
                         customer: {name: this.state.customerName.trim()},
                         items: this.state.items || [],
+                        ct: this.state.ct,
                     },
                     {headers: {token: token}})
                     .then(response => {
                         if (this._isMounted) {
                             this.setState({loading: false});
+                            this.props.history.push('/');
                         }
                     }).catch(error => {
-                        NotificationManager.error('Request failed');
+                        const errorMessage = error.response && error.response.data && error.response.data.error;
+                        NotificationManager.error(errorMessage || 'Request failed');
                         this.setState({loading: false, ct: '', customerName: ''});
                         if (error.response && error.response.status === 401) {
                             this.props.history.push('/login');
+                        } else {
+                            this.props.history.push('/');
                         }
                     });
             } else {
@@ -131,6 +145,15 @@ class EditProject extends Component {
                         !this.state.loading &&
                         (
                             <FormControl className="formControl">
+
+                                <TextField
+                                    className="formField"
+                                    id="ct"
+                                    label="CT"
+                                    variant="standard"
+                                    value={this.state.ct}
+                                    onChange={this.handleOnChangeCT}
+                                />
 
                                 <TextField
                                     className="formField"
