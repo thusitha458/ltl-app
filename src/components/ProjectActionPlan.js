@@ -19,6 +19,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import moment from "moment";
 import Layout from "./Layout";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 const StyledTableCell = withStyles(theme => ({
     head: {
@@ -120,6 +122,56 @@ class ProjectActionPlan extends Component {
         }
     };
 
+    handleExportToPdf = () => {
+        console.log('Exporting', this.state.project);
+        if (
+            this.state.project 
+            && this.state.project.ct
+            && this.state.project.actionPlan 
+            && this.state.project.actionPlan.length > 0 
+            && !this.state.loading
+        ) {
+            const project = this.state.project;
+
+            const marginLeft = 40;
+            const doc = new jsPDF("portrait", "pt", "A4");
+    
+            doc.setFontSize(15);
+            const title = `${project.ct}${project.customer && project.customer.name ? `: ${project.customer.name}` : ''}`;
+            doc.text(title, marginLeft, 40);
+
+            doc.setFontSize(12);
+            const items = project.items && project.items.length > 0 ? project.items.join(', ') : null;
+            doc.text(`Items: ${items || '-'}`, marginLeft, 60);
+
+            const headers = [["Activity", "Responsibility", "Target Date", "Target Date (Rev.)", "Status", "Date Completed", "Remarks"]];
+    
+            const data = project.actionPlan
+                .sort((a, b) => a.id - b.id)
+                .map(field => {
+                    if (field.innerFields && field.innerFields.length > 0) {
+                        return field.innerFields
+                            .sort((a, b) => a.id - b.id)
+                            .map(innerField => {
+                                return innerField.value || innerField.defaultValue || '';
+                            })
+                            .slice(0, 7);
+                    } else {
+                        return ['', '', '', '', '', '', ''];
+                    }
+                });
+    
+            let content = {
+                startY: 90,
+                head: headers,
+                body: data,
+            };
+            doc.autoTable(content);
+            
+            doc.save(`${project.ct}.pdf`);
+        }
+    };
+
     render() {
         let role = Cookies.get('role');
 
@@ -129,6 +181,13 @@ class ProjectActionPlan extends Component {
                 title={this.state.project && `${this.state.project.ct}: ${this.state.project.customer.name}`}
                 items={this.state.project && this.state.project.items}
             >
+                <div className="ExportButtonPanel" style={this.state.loading ? {display: 'none'} : undefined}>
+                    <Button
+                        variant="contained"
+                        onClick={this.handleExportToPdf}
+                        disabled={this.state.loading}
+                    >Export PDF</Button>
+                </div>
                 <div className="ProjectActionPlan">
                 {
                     this.state.loading ?

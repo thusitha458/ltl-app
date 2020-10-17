@@ -101,6 +101,13 @@
   bottom: 50px;
 }
 
+.ExportButtonPanel {
+  text-align: right;
+  min-width: 800px;
+  max-width: 1100px;
+  margin: 25px auto 0 auto;
+}
+
 .ProjectActionPlan {
   min-width: 800px;
   max-width: 1100px;
